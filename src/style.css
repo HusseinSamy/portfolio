@@ -1,1 +1,121 @@
+/* Self-hosted webfonts (fontsource). Variable where it exists — one file per family
+   covers every weight. Space Mono has no variable build, so it stays static 400/700. */
+@import '@fontsource-variable/bricolage-grotesque';
+@import '@fontsource-variable/ibm-plex-sans';
+@import '@fontsource/space-mono/latin-400.css';
+@import '@fontsource/space-mono/latin-700.css';
 @import 'tailwindcss';
+
+/* Design system: charcoal & ochre. Light default, dark opt-in via [data-theme="dark"]. */
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+@theme {
+  /* base ramp */
+  --color-grey-50: oklch(0.988 0.002 255);
+  --color-grey-100: oklch(0.965 0.003 255);
+  --color-grey-200: oklch(0.93 0.004 255);
+  --color-grey-300: oklch(0.885 0.005 255);
+  --color-grey-600: oklch(0.505 0.011 255);
+  --color-grey-900: oklch(0.24 0.012 255);
+  --color-ochre-500: oklch(0.6 0.115 68);
+  --color-ochre-300: oklch(0.775 0.115 74);
+
+  --font-display: 'Bricolage Grotesque Variable', sans-serif;
+  --font-body: 'IBM Plex Sans Variable', system-ui, sans-serif;
+  --font-mono: 'Space Mono', monospace;
+
+  /* display — Bricolage Grotesque 500, tight tracking, fluid */
+  --text-hero: clamp(36px, 7vw, 64px);
+  --text-hero--line-height: 1.05;
+  --text-hero--letter-spacing: -0.025em;
+  --text-display: clamp(32px, 5.5vw, 48px);
+  --text-display--line-height: 1.1;
+  --text-display--letter-spacing: -0.02em;
+  --text-title: 28px;
+  --text-title--line-height: 1.2;
+  --text-title--letter-spacing: -0.015em;
+  --text-subtitle: 24px;
+  --text-subtitle--line-height: 1.2;
+
+  /* body — IBM Plex Sans */
+  --text-lead: 20px;
+  --text-lead--line-height: 1.6;
+  --text-prose: 17px;
+  --text-prose--line-height: 1.7;
+  --text-body: 16px;
+  --text-body--line-height: 1.6;
+  --text-small: 14px;
+  --text-small--line-height: 1.6;
+
+  /* mono — Space Mono, always uppercase with tracking */
+  --text-label: 12px;
+  --text-label--letter-spacing: 0.1em;
+  --text-micro: 11px;
+  --text-micro--letter-spacing: 0.1em;
+
+  --tracking-label: 0.1em;
+  --tracking-mono: 0.06em;
+
+  --radius-control: 2px; /* buttons, tags, tiles */
+  --radius-card: 4px; /* cards, detail panels */
+  --radius-panel: 8px; /* full section panels */
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Semantic tokens live outside @theme so [data-theme] can swap them at runtime. */
+:root {
+  --bg: var(--color-grey-100);
+  --surface: var(--color-grey-50);
+  --panel: var(--color-grey-50);
+  --shade: var(--color-grey-200);
+
+  --ink: var(--color-grey-900);
+  --muted: var(--color-grey-600);
+  --line: var(--color-grey-300);
+  --accent: var(--color-ochre-500);
+  --accent-ink: oklch(0.985 0.005 90);
+
+  --accent-wash: color-mix(in oklab, var(--accent) 14%, transparent);
+  --ghost-ink: color-mix(in oklab, var(--ink) 5%, transparent);
+
+  --duration-hover: 200ms;
+  --duration-reveal: 640ms;
+  --transition-hover: var(--duration-hover) ease;
+  --transition-reveal:
+    opacity var(--duration-reveal) var(--ease-out), transform var(--duration-reveal) var(--ease-out);
+  --reveal-offset: 16px;
+}
+
+[data-theme='dark'] {
+  --bg: oklch(0.185 0.008 255);
+  --surface: oklch(0.225 0.008 255);
+  --panel: oklch(0.155 0.008 255);
+  --shade: oklch(0.245 0.008 255);
+  --ink: oklch(0.93 0.004 255);
+  --muted: oklch(0.665 0.009 255);
+  --line: oklch(0.315 0.008 255);
+  --accent: var(--color-ochre-300);
+  --accent-ink: oklch(0.19 0.02 70);
+  --ghost-ink: color-mix(in oklab, var(--ink) 6%, transparent);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-panel: var(--panel);
+  --color-shade: var(--shade);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-wash: var(--accent-wash);
+  --color-ghost-ink: var(--ghost-ink);
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+}
