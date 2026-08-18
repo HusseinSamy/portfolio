@@ -1,8 +1,15 @@
-import { test, expect } from '@playwright/test'
+import { expect, test } from '@playwright/test'
 
-// See here how to get started:
-// https://playwright.dev/docs/intro
-test('visits the app root url', async ({ page }) => {
+test('the home page leads with the claim', async ({ page }) => {
   await page.goto('/')
-  await expect(page.locator('h1')).toHaveText('You did it!')
+  await expect(page.locator('h1')).toHaveText(
+    'I ship production frontends that stay fast, accessible, and easy to change.',
+  )
+})
+
+test('a work card opens its case study', async ({ page }) => {
+  await page.goto('/')
+  await page.getByRole('link', { name: /ezone\.ly/ }).click()
+  await expect(page).toHaveURL(/\/work\/ezone$/)
+  await expect(page.locator('h1')).toContainText('Angular codebase')
 })

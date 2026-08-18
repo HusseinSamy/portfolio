@@ -56,11 +56,25 @@
   --tracking-label: 0.1em;
   --tracking-mono: 0.06em;
 
+  --leading-hero: 1.05;
+  --leading-display: 1.1;
+  --leading-title: 1.2;
+  --leading-body: 1.6;
+  --leading-prose: 1.7;
+
   --radius-control: 2px; /* buttons, tags, tiles */
   --radius-card: 4px; /* cards, detail panels */
   --radius-panel: 8px; /* full section panels */
 
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Measures and rails. The 8-point scale itself is Tailwind's — space-1..16 map
+     to 2/4/6/8/12/16/24/32. These are the layout constants it has no equivalent for. */
+  --spacing-rail: 160px;
+  --spacing-header: 64px;
+  --container-page: 1024px;
+  --container-read: 720px;
+  --container-copy: 640px; /* the 640px prose measure — max-w-prose is Tailwind's own 65ch */
 }
 
 /* Semantic tokens live outside @theme so [data-theme] can swap them at runtime. */
@@ -114,8 +128,54 @@
   --color-ghost-ink: var(--ghost-ink);
 }
 
-body {
-  background-color: var(--bg);
-  color: var(--ink);
-  font-family: var(--font-body);
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background: var(--bg);
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    line-height: var(--leading-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+/* One reveal: opacity 0→1 with a 16px rise, fired once on enter. Skipped entirely
+   under prefers-reduced-motion — the v-reveal directive never runs there. */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(var(--reveal-offset));
+    transition: var(--transition-reveal);
+  }
+
+  .reveal-in {
+    opacity: 1;
+    transform: none;
+  }
 }
