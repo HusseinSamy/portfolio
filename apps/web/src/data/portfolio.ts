@@ -1,4 +1,14 @@
-export const identity = {
+import type {
+  Article,
+  CaseStudy,
+  CaseSummary,
+  Identity,
+  Principle,
+} from '@portfolio/content'
+
+export type { CaseStudy }
+
+export const identity: Identity = {
   brand: 'HUSSEIN SAMY',
   email: 'husseinsamy.dev@gmail.com',
   linkedin: 'https://www.linkedin.com/in/hussein-samy/',
@@ -8,7 +18,7 @@ export const identity = {
   cv: '/Hussein_Samy_CV.pdf',
 }
 
-export const cases = [
+export const cases: CaseSummary[] = [
   {
     slug: 'ciela',
     title: 'Ciela',
@@ -38,7 +48,7 @@ export const cases = [
   },
 ]
 
-export const principles = [
+export const principles: Principle[] = [
   {
     n: '01',
     title: 'I write the update before anyone asks for it.',
@@ -66,7 +76,7 @@ export const principles = [
   },
 ]
 
-export const writing = [
+export const writing: Article[] = [
   {
     href: '#',
     meta: '2026 · Debugging',
@@ -75,19 +85,6 @@ export const writing = [
       'How neglected RxJS subscriptions and a circular dependency added 27% to a build, and the method I used to find them.',
   },
 ]
-
-type CaseSection = { heading: string; body?: string; items?: string[] }
-
-export type CaseStudy = {
-  slug: string
-  eyebrow: string
-  title: string
-  lead: string
-  facts: { label: string; value: string }[]
-  sections: CaseSection[]
-  outcome?: { value: string; body: string }
-  next: { label: string; slug: string }
-}
 
 export const caseStudies: CaseStudy[] = [
   {

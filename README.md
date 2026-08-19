@@ -1,6 +1,14 @@
 # portfolio
 
-This template should help get you started developing with Vue 3 in Vite.
+Turborepo monorepo (npm workspaces).
+
+```
+apps/web            Vue 3 + Vite frontend
+packages/content    Shared content schema (types), imported by the frontend and the CMS
+```
+
+Root scripts (`dev`, `build`, `lint`, `type-check`, `test:unit`, `test:e2e`) run through
+`turbo` across every workspace. Add the CMS as `apps/cms` — the workspace glob picks it up.
 
 ## Recommended IDE Setup
 
