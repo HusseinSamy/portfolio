@@ -38,6 +38,12 @@ __screenshots__/
 # Vite
 *.timestamp-*-*.mjs
 
+# Nuxt
+.nuxt
+.output
+.data
+.nitro
+
 test-results/
 playwright-report/
 

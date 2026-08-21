@@ -4,7 +4,10 @@
   "private": true,
   "type": "module",
   "packageManager": "npm@11.16.0",
-  "workspaces": ["apps/*", "packages/*"],
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
@@ -12,7 +15,7 @@
     "lint": "turbo lint",
     "test:unit": "turbo test:unit",
     "test:e2e": "turbo test:e2e",
-    "format": "prettier --write --experimental-cli apps/*/src packages/*/src"
+    "format": "prettier --write --experimental-cli apps/*/app packages/*/src"
   },
   "devDependencies": {
     "prettier": "3.9.5",

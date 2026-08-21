@@ -17,7 +17,7 @@ export default defineConfigWithVueTs(
     files: ['**/*.{vue,ts,mts,tsx}'],
   },
 
-  globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
+  globalIgnores(['**/.nuxt/**', '**/.output/**', '**/dist/**', '**/coverage/**']),
 
   ...pluginVue.configs['flat/essential'],
   vueTsConfigs.recommended,
@@ -29,7 +29,14 @@ export default defineConfigWithVueTs(
 
   {
     ...pluginVitest.configs.recommended,
-    files: ['src/**/__tests__/*'],
+    files: ['test/**/*'],
+  },
+
+  {
+    // Page filenames are routes, not component names.
+    name: 'app/pages',
+    files: ['app/pages/**/*.vue', 'app/app.vue'],
+    rules: { 'vue/multi-word-component-names': 'off' },
   },
 
   ...pluginOxlint.buildFromOxlintConfigFile('.oxlintrc.json'),
