@@ -38,7 +38,6 @@ import { vReveal } from '~/directives/reveal'
             :meta="item.meta"
             :summary="item.summary"
             :tags="item.tags"
-            :outcomes="item.outcomes"
           />
         </div>
       </div>

@@ -20,7 +20,6 @@ export const cases: CaseSummary[] = [
     summary:
       'A production SaaS MVP delivered in four weeks — database schema, secure APIs, authenticated flows and Stripe billing, shipped end to end by one engineer.',
     tags: ['NEXT.JS', 'SUPABASE AUTH', 'STRIPE'],
-    outcomes: ['+30 LIGHTHOUSE PERF'],
   },
   {
     slug: 'vocabed',
@@ -29,7 +28,6 @@ export const cases: CaseSummary[] = [
     summary:
       'A vocabulary learning app built to see how far a single-person product can go on strict constraints: no dependency added without a reason written down.',
     tags: ['NEXT.JS', 'TYPESCRIPT', 'TAILWIND CSS'],
-    outcomes: [],
   },
   {
     slug: 'ezone',
@@ -38,7 +36,6 @@ export const cases: CaseSummary[] = [
     summary:
       'Eighteen months on a large Angular codebase across two time zones: memory leaks traced and closed, layout shift removed, and the first unit tests the critical paths ever had.',
     tags: ['ANGULAR', 'RXJS'],
-    outcomes: ['−27% BUILD TIME', '+31 LIGHTHOUSE PERF'],
   },
 ]
 

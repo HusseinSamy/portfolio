@@ -17,7 +17,6 @@ export type CaseSummary = {
   meta: string
   summary: string
   tags: string[]
-  outcomes: string[]
 }
 
 export type Principle = {
