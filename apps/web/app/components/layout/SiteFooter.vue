@@ -3,7 +3,7 @@ defineProps<{ email: string; meta: string }>()
 </script>
 
 <template>
-  <footer class="border-line bg-shade relative z-1 border-t">
+  <footer class="border-line bg-bg relative z-1 border-t">
     <div
       class="max-w-page px-gutter mx-auto flex flex-wrap items-center justify-between gap-6 py-8"
     >
