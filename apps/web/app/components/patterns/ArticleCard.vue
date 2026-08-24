@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { action = 'READ →' } = defineProps<{
+const { action = 'READ' } = defineProps<{
   href: string
   meta: string
   title: string
@@ -15,6 +15,13 @@ const { action = 'READ →' } = defineProps<{
       {{ title }}
     </h3>
     <p class="text-muted text-body m-0 text-pretty">{{ summary }}</p>
-    <span class="text-accent font-mono text-label tracking-mono mt-auto pt-2">{{ action }}</span>
+    <span
+      class="text-accent mt-auto inline-flex items-center gap-1 pt-2 font-mono text-label tracking-mono"
+    >
+      {{ action }}
+      <span class="inline-block transition-transform duration-200 ease-[ease] group-hover:translate-x-1"
+        >→</span
+      >
+    </span>
   </AppCard>
 </template>

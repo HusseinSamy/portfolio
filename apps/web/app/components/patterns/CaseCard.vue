@@ -2,7 +2,7 @@
 const {
   tags = [],
   outcomes = [],
-  action = 'READ THE CASE →',
+  action = 'READ THE CASE',
 } = defineProps<{
   to: string
   title: string
@@ -25,6 +25,11 @@ const {
       <AppTag v-for="tag in tags" :key="tag">{{ tag }}</AppTag>
       <AppTag v-for="outcome in outcomes" :key="outcome" variant="accent">{{ outcome }}</AppTag>
     </div>
-    <span class="text-accent font-mono text-label tracking-mono">{{ action }}</span>
+    <span class="text-accent inline-flex items-center gap-1 font-mono text-label tracking-mono">
+      {{ action }}
+      <span class="inline-block transition-transform duration-200 ease-[ease] group-hover:translate-x-1"
+        >→</span
+      >
+    </span>
   </AppCard>
 </template>

@@ -15,7 +15,7 @@ const {
 }>()
 
 const classes = computed(() => [
-  'flex flex-col gap-4 p-8 bg-surface border border-line rounded-card text-ink',
+  'group flex flex-col gap-4 p-8 bg-surface border border-line rounded-card text-ink',
   'no-underline hover:no-underline transition-[border-color] duration-200 ease-[ease]',
   accentTop ? 'border-t-2 border-t-accent' : '',
   to || href || interactive ? 'hover:border-accent' : '',
