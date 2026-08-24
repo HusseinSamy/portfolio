@@ -38,13 +38,13 @@ if (!study.value) throw createError({ statusCode: 404, statusMessage: 'Case stud
       </ul>
     </template>
 
-    <AppCard v-if="study.outcome" accent-top class="border-accent mb-16">
-      <EyebrowLabel>Outcome</EyebrowLabel>
-      <p class="font-display text-title m-0 font-medium tracking-[-0.02em]">
-        {{ study.outcome.value }}
+    <template v-if="study.outcome">
+      <h2 class="font-display text-title m-0 mb-4 font-medium">Outcome</h2>
+      <p class="text-muted text-prose leading-prose m-0 mb-16 text-pretty">
+        <strong class="text-ink font-medium">{{ study.outcome.value }}</strong>
+        {{ study.outcome.body }}
       </p>
-      <p class="text-muted text-prose leading-prose m-0 text-pretty">{{ study.outcome.body }}</p>
-    </AppCard>
+    </template>
 
     <div
       class="border-line flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-t pt-8"
