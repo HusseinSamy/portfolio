@@ -21,6 +21,7 @@ const total = computed(() => String(steps.length).padStart(2, '0'))
         class="-ml-px flex w-full cursor-pointer items-start gap-4 rounded-r-control border-0 border-l-2 py-4 pr-4 pl-6 text-left transition-[background,border-color] duration-200 ease-[ease]"
         :class="i === active ? 'bg-bg border-l-accent' : 'border-l-transparent bg-transparent'"
         @click="active = i"
+        @mouseenter="active = i"
       >
         <span
           class="leading-body flex-none font-mono text-label"
@@ -29,7 +30,7 @@ const total = computed(() => String(steps.length).padStart(2, '0'))
         >
         <span
           class="text-body leading-[1.5] text-pretty"
-          :class="i === active ? 'text-ink font-semibold' : 'text-muted font-normal'"
+          :class="i === active ? 'text-ink' : 'text-muted'"
           >{{ step.title }}</span
         >
       </button>
@@ -43,13 +44,17 @@ const total = computed(() => String(steps.length).padStart(2, '0'))
         class="text-ghost-ink pointer-events-none absolute top-0 right-4 font-mono text-[112px] leading-none font-bold"
         >{{ current.n }}</span
       >
-      <p class="text-accent relative m-0 font-mono text-micro tracking-label uppercase">
-        Commitment {{ current.n }} of {{ total }}
-      </p>
-      <h3 class="font-display text-title leading-title relative m-0 font-medium text-pretty">
-        {{ current.title }}
-      </h3>
-      <p class="text-muted text-prose leading-prose relative m-0 text-pretty">{{ current.body }}</p>
+      <Transition name="step-fade">
+        <div :key="current.n" class="relative flex flex-col gap-4">
+          <p class="text-accent m-0 font-mono text-micro tracking-label uppercase">
+            Commitment {{ current.n }} of {{ total }}
+          </p>
+          <h3 class="font-display text-title leading-title m-0 font-medium text-pretty">
+            {{ current.title }}
+          </h3>
+          <p class="text-muted text-prose leading-prose m-0 text-pretty">{{ current.body }}</p>
+        </div>
+      </Transition>
     </div>
   </div>
 </template>

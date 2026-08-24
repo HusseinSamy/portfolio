@@ -165,6 +165,21 @@
   }
 }
 
+.step-fade-enter-active,
+.step-fade-leave-active {
+  transition: var(--transition-hover);
+}
+
+.step-fade-enter-from,
+.step-fade-leave-to {
+  opacity: 0;
+}
+
+.step-fade-leave-active {
+  position: absolute;
+  inset: 40px;
+}
+
 /* One reveal: opacity 0→1 with a 16px rise, fired once on enter. Skipped entirely
    under prefers-reduced-motion — the v-reveal directive never runs there. */
 @media (prefers-reduced-motion: no-preference) {
