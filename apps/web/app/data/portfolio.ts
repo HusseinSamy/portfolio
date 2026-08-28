@@ -48,28 +48,28 @@ export const cases: CaseSummary[] = [
 export const principles: Principle[] = [
   {
     n: '01',
-    title: 'I write the update before anyone asks for it.',
-    body: 'Decisions, blockers and trade-offs go in the thread or the PR description, not in my head. Someone eight hours behind me should be able to pick the work up cold, without waiting for a call.',
+    title: 'Bad news travels fastest.',
+    body: 'If something is blocked, broken, or late, you hear it the day I know it, not after I quietly fix it. Surprises are the real failure, not delays.',
   },
   {
     n: '02',
-    title: 'Ambiguity gets one specific question, not five vague ones.',
-    body: 'When a requirement is unclear I state the assumption in writing, build the smallest version that tests it, and ask the one question that actually changes the outcome. Waiting a day for a reply is not a plan.',
+    title: 'Silence never means progress.',
+    body: "On async work you get a written update at a predictable rhythm: what moved, what's next, what I need. If you have to ask where things stand, I've already failed.",
   },
   {
     n: '03',
-    title: 'I fix or I file. I don’t route around.',
-    body: 'A bug I meet in someone else’s code gets either a fix with a test or an issue with reproduction steps. Workarounds left quietly in place are how codebases become unmaintainable.',
+    title: 'A question, never a guess.',
+    body: 'When a requirement can be read two ways, I write down both readings, pick one, explain why, and send it before building. You correct a paragraph, not a pull request.',
   },
   {
     n: '04',
-    title: 'First weeks: ship small, read wide, then have opinions.',
-    body: 'Week one I ship something real and small, to learn the pipeline by using it. Week two I read what nobody reads — build config, test setup, the oldest module. Week three I have opinions, and I write them down before I argue for them.',
+    title: 'Broken things become my responsibility.',
+    body: "Not something I ship around, and not something I file and forget. If it's outside my scope, it gets documented and handed to someone who can own it.",
   },
   {
     n: '05',
-    title: 'I use AI tools daily and review every line as if I wrote it.',
-    body: 'Because I did. Generated code goes through the same reading, the same naming standards and the same tests as anything else. Speed is not an excuse for code I can’t explain in review.',
+    title: 'Written beats spoken, by default.',
+    body: "Decisions, context, and reasoning live in text a teammate in any time zone can read hours later. Meetings are for deciding, not informing. Unwritten knowledge doesn't exist yet.",
   },
 ]
 

@@ -6,31 +6,40 @@ const { steps = [], defaultIndex = 0 } = defineProps<{
   defaultIndex?: number
 }>()
 
-const active = ref(defaultIndex)
+// Hover previews a step; the pinned (clicked) step is what we fall back to, so
+// dragging the cursor across the list and away restores what you were reading.
+const pinned = ref(defaultIndex)
+const hovered = ref<number | null>(null)
+const active = computed(() => hovered.value ?? pinned.value)
 const current = computed(() => steps[active.value] ?? { n: '', title: '', body: '' })
+// The pin stays lit while you hover elsewhere, so you never lose your place.
+const isLit = (i: number) => i === pinned.value || i === hovered.value
 const total = computed(() => String(steps.length).padStart(2, '0'))
 </script>
 
 <template>
   <div class="flex flex-wrap items-stretch gap-x-12 gap-y-8">
-    <div class="border-line grid min-w-0 flex-[1_1_320px] content-start gap-0 border-l">
+    <div
+      class="border-line grid min-w-0 flex-[1_1_320px] content-start gap-0 border-l"
+      @mouseleave="hovered = null"
+    >
       <button
         v-for="(step, i) in steps"
         :key="step.n"
         type="button"
         class="-ml-px flex w-full cursor-pointer items-start gap-4 rounded-r-control border-0 border-l-2 py-4 pr-4 pl-6 text-left transition-[background,border-color] duration-200 ease-[ease]"
-        :class="i === active ? 'bg-bg border-l-accent' : 'border-l-transparent bg-transparent'"
-        @click="active = i"
-        @mouseenter="active = i"
+        :class="isLit(i) ? 'bg-bg border-l-accent' : 'border-l-transparent bg-transparent'"
+        @click="pinned = i"
+        @mouseenter="hovered = i"
       >
         <span
           class="leading-body flex-none font-mono text-label"
-          :class="i === active ? 'text-accent' : 'text-muted'"
+          :class="isLit(i) ? 'text-accent' : 'text-muted'"
           >{{ step.n }}</span
         >
         <span
           class="text-body leading-[1.5] text-pretty"
-          :class="i === active ? 'text-ink' : 'text-muted'"
+          :class="isLit(i) ? 'text-ink' : 'text-muted'"
           >{{ step.title }}</span
         >
       </button>
