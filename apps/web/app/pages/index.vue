@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { cases, identity, principles, writing } from '~/data/portfolio'
+import { about, cases, identity, principles, writing } from '~/data/portfolio'
 import { vReveal } from '~/directives/reveal'
 </script>
 
@@ -71,13 +71,8 @@ import { vReveal } from '~/directives/reveal'
     <PageSection id="about" variant="panel" class="flex flex-wrap gap-x-16 gap-y-8" v-reveal>
       <div class="flex-[0_0_var(--spacing-rail)]"><EyebrowLabel>04 / About</EyebrowLabel></div>
       <div class="max-w-copy min-w-0 flex-[1_1_480px]">
-        <p class="text-lead leading-body m-0 mb-8 text-pretty">
-          I build web frontends — mostly React and Next.js, with three years of Angular in
-          production behind me. I read philosophy at Cairo University before I did any of this,
-          which is why I care so much about naming things accurately and writing the reasoning down.
-          I'm in Cairo on UTC+3, available now for remote frontend work, full-time or contract.
-        </p>
-        <AppButton variant="secondary" to="/about" class="bg-bg">Read more about me →</AppButton>
+        <p class="text-lead leading-body m-0 mb-8 text-pretty">{{ about.summary }}</p>
+        <AppButton variant="secondary" to="/about" class="bg-bg">Read the whole story</AppButton>
       </div>
     </PageSection>
 

@@ -11,5 +11,5 @@ test('a work card opens its case study', async ({ page }) => {
   await page.goto('/')
   await page.getByRole('link', { name: /ezone\.ly/ }).click()
   await expect(page).toHaveURL(/\/work\/ezone$/)
-  await expect(page.locator('h1')).toContainText('Angular codebase')
+  await expect(page.locator('h1')).toContainText('Storefront Themes at ezone.ly')
 })

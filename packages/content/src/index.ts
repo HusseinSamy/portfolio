@@ -16,7 +16,7 @@ export type CaseSummary = {
   title: string
   meta: string
   summary: string
-  tags: string[]
+  tags?: string[]
 }
 
 export type Principle = {
@@ -34,19 +34,21 @@ export type Article = {
 
 export type CaseSection = {
   heading: string
-  body?: string
-  items?: string[]
+  body: string[]
 }
 
 export type CaseStudy = {
   slug: string
   eyebrow: string
   title: string
-  lead: string
   facts: { label: string; value: string }[]
   sections: CaseSection[]
-  outcome?: { value: string; body: string }
   next: { label: string; slug: string }
+}
+
+export type About = {
+  summary: string
+  story: string[]
 }
 
 export type Content = {
@@ -55,4 +57,5 @@ export type Content = {
   principles: Principle[]
   writing: Article[]
   caseStudies: CaseStudy[]
+  about: About
 }
