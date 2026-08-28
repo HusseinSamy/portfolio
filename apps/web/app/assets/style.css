@@ -71,7 +71,7 @@
   /* Measures and rails. The 8-point scale itself is Tailwind's — space-1..16 map
      to 2/4/6/8/12/16/24/32. These are the layout constants it has no equivalent for. */
   --spacing-rail: 160px;
-  --spacing-header: 64px;
+  --spacing-header: 104px;
   --container-page: 1024px;
   --container-read: 720px;
   --container-copy: 640px; /* the 640px prose measure — max-w-prose is Tailwind's own 65ch */
@@ -178,6 +178,27 @@
 .step-fade-leave-active {
   position: absolute;
   inset: 40px;
+}
+
+/* Mobile menu: a short drop from under the header bar. The offset is dropped
+   under prefers-reduced-motion, leaving a plain fade. */
+.menu-drop-enter-active,
+.menu-drop-leave-active {
+  transition:
+    opacity var(--duration-hover) ease,
+    transform var(--duration-hover) ease;
+}
+
+.menu-drop-enter-from,
+.menu-drop-leave-to {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .menu-drop-enter-from,
+  .menu-drop-leave-to {
+    transform: translateY(-8px);
+  }
 }
 
 /* One reveal: opacity 0→1 with a 16px rise, fired once on enter. Skipped entirely

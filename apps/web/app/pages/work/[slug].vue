@@ -11,7 +11,7 @@ if (!study.value) throw createError({ statusCode: 404, statusMessage: 'Case stud
 </script>
 
 <template>
-  <article v-if="study" class="max-w-read px-gutter relative z-1 mx-auto pt-24 pb-32">
+  <article v-if="study" class="max-w-read px-gutter relative z-1 mx-auto pt-10 pb-32">
     <EyebrowLabel tone="accent" class="mb-6">{{ study.eyebrow }}</EyebrowLabel>
     <h1
       class="font-display m-0 mb-12 text-[clamp(32px,6vw,52px)] leading-[1.08] tracking-[-0.02em] font-medium text-pretty"

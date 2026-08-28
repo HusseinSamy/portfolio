@@ -26,7 +26,7 @@ const links = computed(() =>
       :links="links"
       :cta="{ label: `Let's connect`, href: identity.linkedin }"
     />
-    <NuxtPage />
+    <div class="pt-[88px] lg:pt-[96px]"><NuxtPage /></div>
     <SiteFooter :email="identity.email" :meta="identity.meta" />
   </div>
 </template>

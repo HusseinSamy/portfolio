@@ -3,7 +3,7 @@ import { about, identity } from '~/data/portfolio'
 </script>
 
 <template>
-  <article class="max-w-read px-gutter relative z-1 mx-auto pt-24 pb-32">
+  <article class="max-w-read px-gutter relative z-1 mx-auto pt-10 pb-32">
     <EyebrowLabel tone="accent" class="mb-6">About</EyebrowLabel>
     <p class="text-lead m-0 mb-16 leading-[1.55] text-pretty">{{ about.summary }}</p>
 

@@ -3,7 +3,7 @@
    round caps and joins, currentColor, no fills. Authored to match Lucide's geometry.
    If a new icon is needed, take it from https://lucide.dev rather than drawing one. */
 const { size = 20, stroke = 1.75 } = defineProps<{
-  name: 'mail' | 'download' | 'linkedin' | 'repo' | 'sun' | 'moon' | 'close'
+  name: 'mail' | 'download' | 'linkedin' | 'repo' | 'sun' | 'moon' | 'menu' | 'close'
   size?: number
   stroke?: number
 }>()
@@ -49,6 +49,7 @@ const { size = 20, stroke = 1.75 } = defineProps<{
       />
     </template>
     <path v-else-if="name === 'moon'" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />
+    <path v-else-if="name === 'menu'" d="M4 6h16M4 12h16M4 18h16" />
     <path v-else d="M6 6l12 12M18 6L6 18" />
   </svg>
 </template>

@@ -5,7 +5,7 @@ import { vReveal } from '~/directives/reveal'
 
 <template>
   <main id="top" class="max-w-page px-gutter relative z-1 mx-auto">
-    <PageSection first class="pt-18 pb-24">
+    <PageSection first class="pt-4 pb-24">
       <StatusDot label="Open to remote frontend roles" class="mb-8" />
       <h1 class="font-display text-hero m-0 mb-8 max-w-[800px] font-medium text-pretty">
         I ship production frontends that stay fast, accessible, and easy to change.
