@@ -32,6 +32,8 @@ if (!study.value) throw createError({ statusCode: 404, statusMessage: 'Case stud
       </p>
     </template>
 
+    <TestimonialCard v-if="study.testimonial" v-bind="study.testimonial" class="mb-16" />
+
     <div
       class="border-line flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-t pt-8"
     >

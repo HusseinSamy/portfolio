@@ -138,6 +138,18 @@ export const caseStudies: CaseStudy[] = [
         ],
       },
     ],
+    testimonial: {
+      quote: [
+        "I've worked with Hussein for several months building Ciela, and he's one of the most capable people I've had on a project. He doesn't just execute what's asked, he actually thinks about whether it's the right call in the first place.",
+        "He's technically strong, but the bigger thing is how he handles problems. He doesn't just flag an issue, he shows up with a couple of ways to fix it and walks you through the tradeoffs so you can actually decide.",
+        "What I've appreciated most is that he's proactive, catching problems before they become problems and suggesting things worth building even when nobody asked. Ciela's MVP came together in four weeks, and a lot of that pace came from him building the right things instead of just building fast.",
+        "He's also easy to work with. Updates come without me having to chase him, he asks the right questions when something's unclear, and he hits deadlines. He explains technical stuff in a way that actually lands, so conversations with him are useful, not just status checks.",
+        "If you want a developer who's technically solid, communicates well, and thinks ahead instead of just taking orders, Hussein's your guy.",
+      ],
+      name: 'Adhiraj Hangal',
+      role: 'Founder, Kingstone Systems',
+      avatar: '/adhiraj.jpeg',
+    },
     next: { label: 'NEXT CASE — EZONE.LY →', slug: 'ezone' },
   },
   {
