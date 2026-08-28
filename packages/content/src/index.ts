@@ -37,12 +37,20 @@ export type CaseSection = {
   body: string[]
 }
 
+export type Testimonial = {
+  quote: string[]
+  name: string
+  role: string
+  avatar: string
+}
+
 export type CaseStudy = {
   slug: string
   eyebrow: string
   title: string
   facts: { label: string; value: string }[]
   sections: CaseSection[]
+  testimonial?: Testimonial
   next: { label: string; slug: string }
 }
 
