@@ -70,6 +70,7 @@
 
   /* Measures and rails. The 8-point scale itself is Tailwind's — space-1..16 map
      to 2/4/6/8/12/16/24/32. These are the layout constants it has no equivalent for. */
+  --spacing-gutter: clamp(20px, 4vw, 32px);
   --spacing-rail: 160px;
   --spacing-header: 104px;
   --container-page: 1024px;
