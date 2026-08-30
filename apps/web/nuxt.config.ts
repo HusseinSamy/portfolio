@@ -22,6 +22,11 @@ export default defineNuxtConfig({
       title: 'Hussein Samy — Frontend engineer',
       link: [{ rel: 'icon', href: '/favicon.ico' }],
       meta: [
+        // Server-rendered, so browsers that read theme-color at parse time find one.
+        // The media pair covers everyone on the system theme; a manual override is
+        // patched in by the script below and by the toggle.
+        { name: 'theme-color', media: '(prefers-color-scheme: light)', content: themeBar.light },
+        { name: 'theme-color', media: '(prefers-color-scheme: dark)', content: themeBar.dark },
         {
           name: 'description',
           content:
@@ -30,10 +35,8 @@ export default defineNuxtConfig({
       ],
       script: [
         {
-          // Set the theme before first paint so dark mode never flashes light, and
-          // write the matching theme-color so iOS Safari tints its bar instead of
-          // painting its own white/black strip above the page.
-          innerHTML: `const t=localStorage.getItem('theme')??(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.theme=t;document.head.insertAdjacentHTML('beforeend','<meta name="theme-color" content="'+(t==='dark'?'${themeBar.dark}':'${themeBar.light}')+'">')`,
+          // Set the theme before first paint so dark mode never flashes light.
+          innerHTML: `const t=localStorage.getItem('theme')??(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.theme=t`,
           tagPosition: 'head',
         },
       ],
