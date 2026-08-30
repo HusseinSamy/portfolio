@@ -4,7 +4,7 @@
    'light' on the server and mismatch on hydration. Both icons ship, CSS picks. */
 function toggle() {
   const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'
-  document.documentElement.dataset.theme = next
+  applyTheme(next)
   localStorage.setItem('theme', next)
 }
 </script>

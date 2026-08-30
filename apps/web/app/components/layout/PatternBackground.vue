@@ -60,11 +60,11 @@ const { pattern = 'grid' } = defineProps<{ pattern?: 'grid' | 'dots' }>()
 }
 
 .texture.dots {
-  background-image: radial-gradient(
+  /* background-image: radial-gradient(
     color-mix(in oklab, var(--accent) 50%, transparent) 1.6px,
     transparent 1px
   );
   background-size: 24px 24px;
-  opacity: 0.55;
+  opacity: 0.55; */
 }
 </style>

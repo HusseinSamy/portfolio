@@ -1,5 +1,7 @@
 import tailwindcss from '@tailwindcss/vite'
 
+import { themeBar } from './app/utils/theme'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
@@ -28,8 +30,10 @@ export default defineNuxtConfig({
       ],
       script: [
         {
-          // Set the theme before first paint so dark mode never flashes light.
-          innerHTML: `document.documentElement.dataset.theme=localStorage.getItem('theme')??(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')`,
+          // Set the theme before first paint so dark mode never flashes light, and
+          // write the matching theme-color so iOS Safari tints its bar instead of
+          // painting its own white/black strip above the page.
+          innerHTML: `const t=localStorage.getItem('theme')??(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.theme=t;document.head.insertAdjacentHTML('beforeend','<meta name="theme-color" content="'+(t==='dark'?'${themeBar.dark}':'${themeBar.light}')+'">')`,
           tagPosition: 'head',
         },
       ],
