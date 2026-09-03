@@ -148,7 +148,7 @@ export const caseStudies: CaseStudy[] = [
       ],
       name: 'Adhiraj Hangal',
       role: 'Founder, Kingstone Systems',
-      avatar: '/adhiraj.jpeg',
+      avatar: '/adhiraj.jpg',
     },
     next: { label: 'NEXT CASE — EZONE.LY →', slug: 'ezone' },
   },
