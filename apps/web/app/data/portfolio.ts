@@ -155,7 +155,7 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: 'ezone',
     eyebrow: 'Case 02 — ezone.ly',
-    title: 'Storefront Themes at ezone.ly — Turning a Vague Ask into a Shipped Feature',
+    title: 'Storefront Themes at ezone.ly — Turning a Vague Asking into a Shipped Feature',
     facts: [
       {
         label: 'Role',
