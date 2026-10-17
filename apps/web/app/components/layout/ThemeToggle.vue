@@ -14,7 +14,7 @@ function toggle() {
     type="button"
     aria-label="Toggle colour theme"
     title="Toggle colour theme"
-    class="text-muted rounded-control border-line hover:border-accent hover:text-ink inline-flex size-8 cursor-pointer items-center justify-center border bg-transparent p-0 transition-[border-color,color] duration-200 ease-[ease]"
+    class="text-ink rounded-control border-line hover:border-accent hover:text-ink inline-flex size-8 cursor-pointer items-center justify-center border bg-transparent p-0 transition-[border-color,color] duration-200 ease-[ease]"
     @click="toggle"
   >
     <AppIcon name="sun" :size="16" class="hidden dark:block" />

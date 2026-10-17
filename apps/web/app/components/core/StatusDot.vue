@@ -8,6 +8,6 @@ defineProps<{ label: string }>()
       <span class="bg-accent absolute inline-flex size-full animate-ping rounded-full opacity-75" />
       <span class="bg-accent relative inline-flex size-2 rounded-full" />
     </span>
-    <span class="text-muted font-mono text-label uppercase">{{ label }}</span>
+    <span class="text-ink font-mono text-label uppercase">{{ label }}</span>
   </div>
 </template>

@@ -26,7 +26,7 @@ if (!study.value) throw createError({ statusCode: 404, statusMessage: 'Case stud
       <p
         v-for="paragraph in section.body"
         :key="paragraph"
-        class="text-muted text-prose leading-prose m-0 mb-6 text-pretty last:mb-16"
+        class="text-ink text-prose leading-prose m-0 mb-6 text-pretty last:mb-16"
       >
         {{ paragraph }}
       </p>
@@ -39,7 +39,7 @@ if (!study.value) throw createError({ statusCode: 404, statusMessage: 'Case stud
     >
       <NuxtLink
         to="/#work"
-        class="text-muted hover:text-ink font-mono text-label tracking-mono no-underline hover:no-underline"
+        class="text-ink hover:text-ink font-mono text-label tracking-mono no-underline hover:no-underline"
         >← ALL WORK</NuxtLink
       >
       <NuxtLink

@@ -10,11 +10,11 @@ import { vReveal } from '~/directives/reveal'
       <h1 class="font-display text-hero m-0 mb-8 max-w-[800px] font-medium text-pretty">
         I ship production frontends that stay fast, accessible, and easy to change.
       </h1>
-      <p class="text-muted text-lead max-w-copy m-0 mb-8 leading-[1.55] text-pretty">
+      <p class="text-ink text-lead max-w-copy m-0 mb-8 leading-[1.55] text-pretty">
         Hussein Samy — frontend engineer, three years of React, Next.js and Angular in production.
         Strong core JavaScript under the framework, and I own every line I ship.
       </p>
-      <p class="text-muted m-0 mb-12 font-mono text-label tracking-mono">
+      <p class="text-ink m-0 mb-12 font-mono text-label tracking-mono">
         {{ identity.availability }}
       </p>
       <div class="flex flex-wrap items-center gap-6">
@@ -82,7 +82,7 @@ import { vReveal } from '~/directives/reveal'
         <h2 class="font-display text-display leading-display m-0 mb-6 font-medium text-pretty">
           Open to remote frontend roles.
         </h2>
-        <p class="text-muted text-prose m-0 mb-8 max-w-[40ch] text-pretty">
+        <p class="text-ink text-prose m-0 mb-8 max-w-[40ch] text-pretty">
           Full-time or contract, from Cairo on UTC+3. Send a connection request and tell me what you
           are building.
         </p>

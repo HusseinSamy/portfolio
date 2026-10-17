@@ -22,7 +22,7 @@ defineProps<{
         />
         <span class="flex min-w-0 flex-col gap-1">
           <span class="text-body font-medium">{{ name }}</span>
-          <span class="text-muted font-mono text-label tracking-mono">{{ role }}</span>
+          <span class="text-ink font-mono text-label tracking-mono">{{ role }}</span>
         </span>
       </figcaption>
       <div class="relative">
@@ -37,7 +37,7 @@ defineProps<{
           <p
             v-for="paragraph in quote"
             :key="paragraph"
-            class="text-muted text-prose leading-prose m-0 text-pretty"
+            class="text-ink text-prose leading-prose m-0 text-pretty"
           >
             {{ paragraph }}
           </p>

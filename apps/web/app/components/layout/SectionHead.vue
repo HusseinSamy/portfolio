@@ -6,6 +6,6 @@ defineProps<{ label: string; framing: string }>()
 <template>
   <div class="mb-12 flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
     <EyebrowLabel>{{ label }}</EyebrowLabel>
-    <p class="text-muted text-prose m-0 max-w-[46ch] text-pretty">{{ framing }}</p>
+    <p class="text-ink text-prose m-0 max-w-[46ch] text-pretty">{{ framing }}</p>
   </div>
 </template>

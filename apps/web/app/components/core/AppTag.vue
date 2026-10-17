@@ -5,7 +5,7 @@ const { variant = 'neutral' } = defineProps<{ variant?: 'neutral' | 'accent' }>(
 <template>
   <span
     class="rounded-control border px-2 py-1 font-mono text-micro tracking-mono whitespace-nowrap uppercase"
-    :class="variant === 'accent' ? 'text-accent border-accent' : 'text-muted border-line'"
+    :class="variant === 'accent' ? 'text-accent border-accent' : 'text-ink border-line'"
   >
     <slot />
   </span>

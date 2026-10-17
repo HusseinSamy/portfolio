@@ -34,12 +34,12 @@ const total = computed(() => String(steps.length).padStart(2, '0'))
       >
         <span
           class="leading-body flex-none font-mono text-label"
-          :class="isLit(i) ? 'text-accent' : 'text-muted'"
+          :class="isLit(i) ? 'text-accent' : 'text-ink'"
           >{{ step.n }}</span
         >
         <span
           class="text-body leading-[1.5] text-pretty"
-          :class="isLit(i) ? 'text-ink' : 'text-muted'"
+          :class="isLit(i) ? 'text-ink' : 'text-ink'"
           >{{ step.title }}</span
         >
       </button>
@@ -61,7 +61,7 @@ const total = computed(() => String(steps.length).padStart(2, '0'))
           <h3 class="font-display text-title leading-title m-0 font-medium text-pretty">
             {{ current.title }}
           </h3>
-          <p class="text-muted text-prose leading-prose m-0 text-pretty">{{ current.body }}</p>
+          <p class="text-ink text-prose leading-prose m-0 text-pretty">{{ current.body }}</p>
         </div>
       </Transition>
     </div>

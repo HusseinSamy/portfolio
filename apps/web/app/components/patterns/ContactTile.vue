@@ -18,7 +18,7 @@ defineProps<{
       <AppIcon :name="icon" />
     </span>
     <span class="grid min-w-0 gap-1">
-      <span class="text-muted font-mono text-micro tracking-label uppercase">{{ label }}</span>
+      <span class="text-ink font-mono text-micro tracking-label uppercase">{{ label }}</span>
       <span class="text-body [overflow-wrap:anywhere]">{{ value }}</span>
     </span>
   </a>

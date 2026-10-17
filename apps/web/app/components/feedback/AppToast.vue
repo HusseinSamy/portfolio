@@ -20,13 +20,13 @@ defineEmits<{ dismiss: [] }>()
     <span
       v-if="icon"
       class="inline-flex flex-none pt-0.5"
-      :class="tone === 'accent' ? 'text-accent' : 'text-muted'"
+      :class="tone === 'accent' ? 'text-accent' : 'text-ink'"
     >
       <AppIcon :name="icon" :size="16" />
     </span>
     <div class="grid min-w-0 flex-1 gap-1">
       <span v-if="title" class="text-body leading-[1.4] font-semibold">{{ title }}</span>
-      <span v-if="message" class="text-muted text-small leading-[1.5] text-pretty">{{
+      <span v-if="message" class="text-ink text-small leading-[1.5] text-pretty">{{
         message
       }}</span>
       <a
@@ -40,7 +40,7 @@ defineEmits<{ dismiss: [] }>()
       v-if="dismissible"
       type="button"
       aria-label="Dismiss"
-      class="text-muted hover:text-ink rounded-control inline-flex size-6 flex-none cursor-pointer items-center justify-center border-0 bg-transparent p-0 transition-colors duration-200 ease-[ease]"
+      class="text-ink hover:text-ink rounded-control inline-flex size-6 flex-none cursor-pointer items-center justify-center border-0 bg-transparent p-0 transition-colors duration-200 ease-[ease]"
       @click="$emit('dismiss')"
     >
       <AppIcon name="close" :size="14" />

@@ -13,9 +13,9 @@ const { tags = [], action = 'READ THE CASE' } = defineProps<{
   <AppCard :to="to">
     <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
       <h3 class="font-display text-title m-0 font-medium">{{ title }}</h3>
-      <span class="text-muted font-mono text-label whitespace-nowrap">{{ meta }}</span>
+      <span class="text-ink font-mono text-label whitespace-nowrap">{{ meta }}</span>
     </div>
-    <p class="text-muted text-prose m-0 max-w-[560px] text-pretty">{{ summary }}</p>
+    <p class="text-ink text-prose m-0 max-w-[560px] text-pretty">{{ summary }}</p>
     <div class="flex flex-wrap gap-2">
       <AppTag v-for="tag in tags" :key="tag">{{ tag }}</AppTag>
     </div>

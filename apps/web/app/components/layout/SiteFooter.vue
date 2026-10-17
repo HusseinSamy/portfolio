@@ -12,7 +12,7 @@ defineProps<{ email: string; meta: string }>()
         class="text-ink font-mono text-[13px] no-underline hover:no-underline"
         >{{ email }}</a
       >
-      <span class="text-muted font-mono text-label">{{ meta }}</span>
+      <span class="text-ink font-mono text-label">{{ meta }}</span>
     </div>
   </footer>
 </template>

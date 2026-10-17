@@ -67,7 +67,7 @@ watch(
           v-for="link in links"
           :key="link.href"
           :href="link.href"
-          class="text-muted hover:text-ink text-small no-underline transition-colors duration-200 ease-[ease] hover:no-underline"
+          class="text-ink hover:text-ink text-small no-underline transition-colors duration-200 ease-[ease] hover:no-underline"
           >{{ link.label }}</a
         >
       </nav>
@@ -81,7 +81,7 @@ watch(
         <button
           v-if="links.length"
           type="button"
-          class="text-muted rounded-control border-line hover:border-accent hover:text-ink inline-flex size-8 cursor-pointer items-center justify-center border bg-transparent p-0 transition-[border-color,color] duration-200 ease-[ease] md:hidden"
+          class="text-ink rounded-control border-line hover:border-accent hover:text-ink inline-flex size-8 cursor-pointer items-center justify-center border bg-transparent p-0 transition-[border-color,color] duration-200 ease-[ease] md:hidden"
           :aria-expanded="menuOpen"
           aria-controls="site-menu"
           :aria-label="menuOpen ? 'Close menu' : 'Open menu'"
@@ -102,7 +102,7 @@ watch(
             v-for="link in links"
             :key="link.href"
             :href="link.href"
-            class="text-muted hover:text-ink hover:bg-panel rounded-control text-small px-3 py-2 no-underline transition-colors duration-200 ease-[ease] hover:no-underline"
+            class="text-ink hover:text-ink hover:bg-panel rounded-control text-small px-3 py-2 no-underline transition-colors duration-200 ease-[ease] hover:no-underline"
             @click="menuOpen = false"
             >{{ link.label }}</a
           >

@@ -10,7 +10,7 @@ import { about, identity } from '~/data/portfolio'
     <p
       v-for="paragraph in about.story"
       :key="paragraph"
-      class="text-muted text-prose leading-prose m-0 mb-6 text-pretty"
+      class="text-ink text-prose leading-prose m-0 mb-6 text-pretty"
     >
       {{ paragraph }}
     </p>
@@ -23,7 +23,7 @@ import { about, identity } from '~/data/portfolio'
     <div class="border-line border-t pt-8">
       <NuxtLink
         to="/"
-        class="text-muted hover:text-ink font-mono text-label tracking-mono no-underline hover:no-underline"
+        class="text-ink hover:text-ink font-mono text-label tracking-mono no-underline hover:no-underline"
         >← BACK TO PORTFOLIO</NuxtLink
       >
     </div>

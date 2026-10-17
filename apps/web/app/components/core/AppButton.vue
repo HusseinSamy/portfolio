@@ -27,7 +27,7 @@ const variants = {
   secondary: 'bg-surface text-ink border border-line hover:border-accent',
   // ponytail: ghost pays no size padding — it is a text link with a rule under it.
   ghost:
-    'bg-transparent text-muted border border-transparent p-0 rounded-none border-b-line hover:text-ink hover:border-b-accent',
+    'bg-transparent text-ink border border-transparent p-0 rounded-none border-b-line hover:text-ink hover:border-b-accent',
 }
 
 const classes = computed(() => [

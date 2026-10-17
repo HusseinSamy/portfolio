@@ -5,7 +5,7 @@ const { tone = 'muted' } = defineProps<{ tone?: 'muted' | 'accent' }>()
 <template>
   <p
     class="m-0 font-mono text-label uppercase"
-    :class="tone === 'accent' ? 'text-accent' : 'text-muted'"
+    :class="tone === 'accent' ? 'text-accent' : 'text-ink'"
   >
     <slot />
   </p>

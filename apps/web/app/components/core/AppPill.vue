@@ -14,7 +14,7 @@ const {
 }>()
 
 const tones = {
-  neutral: 'text-muted bg-transparent border border-line',
+  neutral: 'text-ink bg-transparent border border-line',
   accent: 'text-accent bg-accent-wash border border-transparent',
   solid: 'text-accent-ink bg-accent border border-transparent',
 }

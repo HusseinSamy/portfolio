@@ -10,7 +10,7 @@ const { rows = [] } = defineProps<{ rows?: { label: string; value: string }[] }>
       class="border-line flex flex-wrap gap-x-6 gap-y-2 border-t py-4"
       :class="i === rows.length - 1 ? 'border-b' : ''"
     >
-      <span class="text-muted font-mono text-label flex-[0_0_120px] uppercase">{{
+      <span class="text-ink font-mono text-label flex-[0_0_120px] uppercase">{{
         row.label
       }}</span>
       <span class="flex-[1_1_240px]">{{ row.value }}</span>
