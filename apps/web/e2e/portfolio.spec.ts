@@ -33,3 +33,41 @@ test('hovering a commitment previews it, leaving the list restores the pinned on
   await page.mouse.move(list!.x + list!.width / 2, list!.y - 40)
   await expect(card).toHaveText('A question, never a guess.')
 })
+
+const article = '/writing/frontend-architecture-for-design-systems'
+
+test('the writing card opens its article', async ({ page }) => {
+  await page.goto('/')
+  await page.getByRole('link', { name: /Frontend Architecture for Design Systems/ }).click()
+  await expect(page).toHaveURL(/\/writing\/frontend-architecture-for-design-systems$/)
+  await expect(page.locator('h1')).toHaveText(
+    'Frontend Architecture for Design Systems: A Review Ten Years Later',
+  )
+})
+
+test('jumping to a section from the map marks it as the one being read', async ({ page }) => {
+  await page.goto(article)
+  // Mid-article on purpose: a section near the end may never reach the read line.
+  const testing = page.getByRole('link', { name: 'Pillar 3: Testing' })
+  await testing.click()
+  await expect(page).toHaveURL(/#pillar-3-testing$/)
+  await expect(testing).toHaveAttribute('aria-current', 'location')
+
+  // The first jump can land before hydration, where the on-mount pass marks it.
+  // This one comes after, so only the scroll listener can mark it.
+  const code = page.getByRole('link', { name: 'Pillar 1: Code' })
+  await code.click()
+  await expect(code).toHaveAttribute('aria-current', 'location')
+  await expect(testing).not.toHaveAttribute('aria-current')
+})
+
+test('the section map collapses and expands', async ({ page }) => {
+  await page.goto(article)
+  const map = page.getByRole('navigation', { name: 'On this page' })
+  const toggle = page.locator('summary').filter({ visible: true })
+  await expect(map).toBeVisible()
+  await toggle.click()
+  await expect(map).toBeHidden()
+  await toggle.click()
+  await expect(map).toBeVisible()
+})

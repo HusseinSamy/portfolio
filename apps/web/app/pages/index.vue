@@ -59,8 +59,8 @@ import { vReveal } from '~/directives/reveal'
       <div class="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-6">
         <ArticleCard
           v-for="item in writing"
-          :key="item.title"
-          :href="item.href"
+          :key="item.slug"
+          :to="`/writing/${item.slug}`"
           :meta="item.meta"
           :title="item.title"
           :summary="item.summary"

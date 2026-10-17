@@ -25,11 +25,22 @@ export type Principle = {
   body: string
 }
 
+// Headings carry their anchor id, so the section map is read off the body and
+// cannot drift from it. `html`, list `items` and `svg` are hand-authored markup.
+export type ArticleBlock =
+  | { kind: 'heading'; level: 2 | 3; id: string; text: string }
+  | { kind: 'paragraph'; html: string }
+  | { kind: 'list'; items: string[] }
+  | { kind: 'code'; lang: string; code: string }
+  | { kind: 'figure'; svg: string; caption: string }
+
 export type Article = {
-  href: string
+  slug: string
   meta: string
   title: string
   summary: string
+  date: string // ISO day, as 2026-10-16
+  body: ArticleBlock[]
 }
 
 export type CaseSection = {

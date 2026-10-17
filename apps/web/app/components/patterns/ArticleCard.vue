@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { action = 'READ' } = defineProps<{
-  href: string
+  to: string
   meta: string
   title: string
   summary: string
@@ -9,7 +9,7 @@ const { action = 'READ' } = defineProps<{
 </script>
 
 <template>
-  <AppCard :href="href" accent-top class="h-full">
+  <AppCard :to="to" accent-top class="h-full">
     <span class="text-ink font-mono text-label uppercase">{{ meta }}</span>
     <h3 class="font-display text-subtitle leading-title m-0 font-medium text-pretty">
       {{ title }}
