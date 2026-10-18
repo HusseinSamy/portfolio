@@ -19,7 +19,7 @@ const prose =
 
 // Anchor jumps land a heading at the 104px header, just above this line.
 const READ_LINE = 120
-const active = ref<string>()
+const active = ref(headings.value[0]?.id)
 
 const onScroll = () => {
   // A short last section never reaches the line, so the page bottom selects it.
@@ -27,9 +27,9 @@ const onScroll = () => {
   const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 1
   active.value = atBottom
     ? headings.value.at(-1)?.id
-    : headings.value.findLast(
+    : (headings.value.findLast(
         (h) => document.getElementById(h.id)!.getBoundingClientRect().top <= READ_LINE,
-      )?.id
+      )?.id ?? headings.value[0]?.id)
 }
 
 onMounted(() => {
@@ -40,22 +40,17 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
 </script>
 
 <template>
-  <div
-    v-if="article"
-    class="max-w-page px-gutter relative z-1 mx-auto pt-10 pb-32 lg:grid lg:grid-cols-[minmax(0,1fr)_240px] lg:gap-x-8"
-  >
-    <article class="max-w-read min-w-0">
+  <div v-if="article">
+    <article class="max-w-read px-gutter relative z-1 mx-auto pt-10 pb-32">
       <EyebrowLabel tone="accent" class="mb-6">{{ article.meta }}</EyebrowLabel>
       <h1
         class="font-display m-0 mb-6 text-[clamp(32px,6vw,52px)] leading-[1.08] tracking-[-0.02em] font-medium text-pretty"
       >
         {{ article.title }}
       </h1>
-      <time :datetime="article.date" class="text-ink mb-8 block font-mono text-label uppercase">{{
+      <time :datetime="article.date" class="text-ink block font-mono text-label uppercase">{{
         dateFormat.format(new Date(article.date))
       }}</time>
-
-      <ArticleToc :items="headings" :active="active" class="mb-12 lg:hidden" />
 
       <template v-for="(block, i) in article.body" :key="i">
         <component
@@ -100,13 +95,6 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
       </div>
     </article>
 
-    <div class="hidden lg:block">
-      <ArticleToc
-        :items="headings"
-        :active="active"
-        open
-        class="top-header sticky max-h-[calc(100vh-var(--spacing-header)-24px)] overflow-y-auto"
-      />
-    </div>
+    <ArticleToc :items="headings" :active="active" />
   </div>
 </template>

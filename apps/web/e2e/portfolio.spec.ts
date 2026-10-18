@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test'
+import { expect, test, type Page } from '@playwright/test'
 
 test('the home page leads with the claim', async ({ page }) => {
   await page.goto('/')
@@ -45,29 +45,51 @@ test('the writing card opens its article', async ({ page }) => {
   )
 })
 
+// A hover that lands before hydration opens nothing, so step off and hover again
+// until the map reports itself open.
+async function hoverMapOpen(page: Page) {
+  const map = page.getByRole('button', { name: 'Table of contents' })
+  await expect(async () => {
+    await page.mouse.move(0, 0)
+    await map.hover()
+    await expect(map).toHaveAttribute('aria-expanded', 'true', { timeout: 500 })
+  }).toPass()
+}
+
+// The panel hides after a jump, so these locators look past visibility.
+const entry = (page: Page, name: string) => page.getByRole('link', { name, includeHidden: true })
+
 test('jumping to a section from the map marks it as the one being read', async ({ page }) => {
   await page.goto(article)
+  await hoverMapOpen(page)
   // Mid-article on purpose: a section near the end may never reach the read line.
-  const testing = page.getByRole('link', { name: 'Pillar 3: Testing' })
-  await testing.click()
+  await entry(page, 'Pillar 3: Testing').click()
   await expect(page).toHaveURL(/#pillar-3-testing$/)
-  await expect(testing).toHaveAttribute('aria-current', 'location')
+  await expect(entry(page, 'Pillar 3: Testing')).toHaveAttribute('aria-current', 'location')
 
-  // The first jump can land before hydration, where the on-mount pass marks it.
-  // This one comes after, so only the scroll listener can mark it.
-  const code = page.getByRole('link', { name: 'Pillar 1: Code' })
-  await code.click()
-  await expect(code).toHaveAttribute('aria-current', 'location')
-  await expect(testing).not.toHaveAttribute('aria-current')
+  await hoverMapOpen(page)
+  await entry(page, 'Pillar 1: Code').click()
+  await expect(entry(page, 'Pillar 1: Code')).toHaveAttribute('aria-current', 'location')
+  await expect(entry(page, 'Pillar 3: Testing')).not.toHaveAttribute('aria-current')
 })
 
-test('the section map collapses and expands', async ({ page }) => {
+test('the section map opens on hover and closes when the pointer leaves', async ({ page }) => {
   await page.goto(article)
-  const map = page.getByRole('navigation', { name: 'On this page' })
-  const toggle = page.locator('summary').filter({ visible: true })
-  await expect(map).toBeVisible()
-  await toggle.click()
-  await expect(map).toBeHidden()
-  await toggle.click()
-  await expect(map).toBeVisible()
+  await hoverMapOpen(page)
+  await expect(entry(page, 'My Verdict')).toBeVisible()
+  await page.mouse.move(10, 400)
+  await expect(entry(page, 'My Verdict')).toBeHidden()
+})
+
+test('Enter opens the section map and Escape closes it', async ({ page }) => {
+  await page.goto(article)
+  const map = page.getByRole('button', { name: 'Table of contents' })
+  await expect(async () => {
+    await map.press('Enter')
+    await expect(map).toHaveAttribute('aria-expanded', 'true', { timeout: 500 })
+  }).toPass()
+  await expect(entry(page, 'My Verdict')).toBeVisible()
+  await page.keyboard.press('Escape')
+  await expect(entry(page, 'My Verdict')).toBeHidden()
+  await expect(map).toBeFocused()
 })
