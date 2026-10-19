@@ -93,3 +93,15 @@ test('Enter opens the section map and Escape closes it', async ({ page }) => {
   await expect(entry(page, 'My Verdict')).toBeHidden()
   await expect(map).toBeFocused()
 })
+
+test('the header nav works from an inner page and marks where you are', async ({ page }) => {
+  await page.goto(article)
+  const nav = page.locator('header nav').first()
+  await expect(nav.getByRole('link', { name: 'Writing' })).toHaveAttribute('aria-current', 'page')
+
+  // Wait out hydration so the click is a client-side navigation, not a page load.
+  await page.waitForFunction(() => '__vue_app__' in document.getElementById('__nuxt')!)
+  await nav.getByRole('link', { name: 'Contact' }).click()
+  await expect(page).toHaveURL(/\/#contact$/)
+  await expect(page.locator('#contact')).toBeInViewport()
+})

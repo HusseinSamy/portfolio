@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 
 const { brand = 'HUSSEIN SAMY', links = [] } = defineProps<{
   brand?: string
-  links?: { label: string; href: string }[]
+  links?: { label: string; to: string; current?: boolean }[]
   cta?: { label: string; href: string }
 }>()
 
@@ -11,8 +11,16 @@ const SHRINK_AT = 80
 const scrolled = ref(false)
 const menuOpen = ref(false)
 const bar = ref<HTMLElement | null>(null)
+const progress = ref(0)
 
-const onScroll = () => (scrolled.value = window.scrollY > SHRINK_AT)
+const route = useRoute()
+const reading = computed(() => route.path.startsWith('/writing/'))
+
+const onScroll = () => {
+  scrolled.value = window.scrollY > SHRINK_AT
+  const max = document.documentElement.scrollHeight - window.innerHeight
+  progress.value = max > 0 ? Math.min(1, window.scrollY / max) : 0
+}
 const onKeydown = (e: KeyboardEvent) => {
   if (e.key === 'Escape') menuOpen.value = false
 }
@@ -33,7 +41,6 @@ onBeforeUnmount(() => {
 })
 
 // Navigating away closes the panel; an in-page anchor changes the hash only.
-const route = useRoute()
 watch(
   () => route.fullPath,
   () => (menuOpen.value = false),
@@ -50,7 +57,7 @@ watch(
       :class="
         scrolled
           ? 'max-w-[900px] rounded-panel px-4 py-2.5 sm:px-6 sm:py-3'
-          : 'max-w-full rounded-t-card rounded-b-none px-4 py-3 sm:px-8 sm:py-4'
+          : 'max-w-[1200px] rounded-t-card rounded-b-none px-4 py-3 sm:px-8 sm:py-4'
       "
     >
       <NuxtLink
@@ -63,12 +70,18 @@ watch(
         v-if="links.length"
         class="absolute top-1/2 left-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-7 md:flex"
       >
-        <a
+        <NuxtLink
           v-for="link in links"
-          :key="link.href"
-          :href="link.href"
-          class="text-ink hover:text-ink text-small no-underline transition-colors duration-200 ease-[ease] hover:no-underline"
-          >{{ link.label }}</a
+          :key="link.label"
+          :to="link.to"
+          :aria-current="link.current ? 'page' : undefined"
+          class="text-ink hover:text-ink text-small transition-colors duration-200 ease-[ease]"
+          :class="
+            link.current
+              ? 'decoration-accent underline decoration-2 underline-offset-[10px]'
+              : 'no-underline hover:no-underline'
+          "
+          >{{ link.label }}</NuxtLink
         >
       </nav>
 
@@ -98,16 +111,30 @@ watch(
           id="site-menu"
           class="border-line rounded-panel absolute top-full right-0 left-0 mt-2 flex flex-col gap-1 border bg-[color-mix(in_oklab,var(--bg)_96%,transparent)] p-2 backdrop-blur-[40px] backdrop-saturate-[1.8] md:hidden"
         >
-          <a
+          <NuxtLink
             v-for="link in links"
-            :key="link.href"
-            :href="link.href"
+            :key="link.label"
+            :to="link.to"
+            :aria-current="link.current ? 'page' : undefined"
             class="text-ink hover:text-ink hover:bg-panel rounded-control text-small px-3 py-2 no-underline transition-colors duration-200 ease-[ease] hover:no-underline"
+            :class="link.current && 'bg-panel'"
             @click="menuOpen = false"
-            >{{ link.label }}</a
+            >{{ link.label }}</NuxtLink
           >
         </nav>
       </Transition>
+
+      <!-- Clips the line to the bar's own corners; the bar itself can't, or it would cut off the menu. -->
+      <div
+        v-if="reading"
+        class="pointer-events-none absolute -inset-px overflow-hidden rounded-[inherit]"
+        aria-hidden="true"
+      >
+        <div
+          class="bg-accent absolute inset-x-0 bottom-0 h-0.5 origin-left"
+          :style="{ transform: `scaleX(${progress})` }"
+        />
+      </div>
     </div>
   </header>
 </template>

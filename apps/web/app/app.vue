@@ -4,18 +4,27 @@ import { identity } from '~/data/portfolio'
 
 const route = useRoute()
 
-// The design shows nav links on the single-page home only; deeper pages carry
-// their own back links instead.
-const links = computed(() =>
-  route.name === 'index'
-    ? [
-        { label: 'Work', href: '#work' },
-        { label: 'How I work', href: '#how' },
-        { label: 'Writing', href: '#writing' },
-        { label: 'Contact', href: '#contact' },
-      ]
-    : [],
-)
+// The same links everywhere: off the home page the anchors point back at it, and
+// the page you are on (a case study, an article, About) lights its own link.
+const onHome = computed(() => route.name === 'index')
+const section = computed(() => {
+  if (route.path === '/about') return 'about'
+  if (route.path.startsWith('/work/')) return 'work'
+  if (route.path.startsWith('/writing/')) return 'writing'
+  return null
+})
+
+const links = computed(() => [
+  { label: 'Work', to: onHome.value ? '#work' : '/#work', current: section.value === 'work' },
+  { label: 'How I work', to: onHome.value ? '#how' : '/#how', current: false },
+  {
+    label: 'Writing',
+    to: onHome.value ? '#writing' : '/#writing',
+    current: section.value === 'writing',
+  },
+  { label: 'About', to: '/about', current: section.value === 'about' },
+  { label: 'Contact', to: onHome.value ? '#contact' : '/#contact', current: false },
+])
 </script>
 
 <template>
