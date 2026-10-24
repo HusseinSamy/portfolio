@@ -9,6 +9,8 @@ export default defineNuxtConfig({
   // Extra safety for array and object lookups, but may have false positives.
   typescript: { tsConfig: { compilerOptions: { noUncheckedIndexedAccess: true } } },
 
+  modules: ['@vercel/analytics'],
+
   css: ['~/assets/style.css'],
   vite: { plugins: [tailwindcss()] },
 
