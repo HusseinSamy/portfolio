@@ -1,13 +1,36 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
-import { writing } from '~/data/portfolio'
+import { siteUrl, writing } from '~/data/portfolio'
 
 const route = useRoute('writing-slug')
 const article = computed(() => writing.find((a) => a.slug === route.params.slug))
 
 if (!article.value) throw createError({ statusCode: 404, statusMessage: 'Article not found' })
 
-useSeoMeta({ title: () => article.value?.title, description: () => article.value?.summary })
+usePageSeo(() => {
+  const a = article.value
+  if (!a) return
+  const url = `${siteUrl}/writing/${a.slug}`
+  return {
+    title: `${a.title} — Hussein Samy`,
+    description: a.summary,
+    path: `/writing/${a.slug}`,
+    type: 'article',
+    schema: [
+      person,
+      {
+        '@type': 'BlogPosting',
+        '@id': `${url}#article`,
+        headline: a.title,
+        description: a.summary,
+        url,
+        datePublished: a.date,
+        author: { '@id': `${siteUrl}/#person` },
+        inLanguage: 'en',
+      },
+    ],
+  }
+})
 
 const headings = computed(() => article.value?.body.filter((b) => b.kind === 'heading') ?? [])
 

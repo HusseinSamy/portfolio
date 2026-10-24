@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { caseStudies } from '~/data/portfolio'
+import { caseStudies, cases, siteUrl } from '~/data/portfolio'
 
 // Computed, not a plain lookup: the next-case link navigates slug to slug
 // without remounting the page.
@@ -8,6 +8,31 @@ const route = useRoute('work-slug')
 const study = computed(() => caseStudies.find((c) => c.slug === route.params.slug))
 
 if (!study.value) throw createError({ statusCode: 404, statusMessage: 'Case study not found' })
+
+usePageSeo(() => {
+  const s = study.value
+  if (!s) return
+  const summary = cases.find((c) => c.slug === s.slug)?.summary ?? ''
+  const url = `${siteUrl}/work/${s.slug}`
+  return {
+    title: `${s.title} — Hussein Samy`,
+    description: summary,
+    path: `/work/${s.slug}`,
+    type: 'article',
+    schema: [
+      person,
+      {
+        '@type': 'Article',
+        '@id': `${url}#article`,
+        headline: s.title,
+        description: summary,
+        url,
+        author: { '@id': `${siteUrl}/#person` },
+        inLanguage: 'en',
+      },
+    ],
+  }
+})
 </script>
 
 <template>

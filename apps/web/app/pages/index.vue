@@ -1,10 +1,28 @@
 <script setup lang="ts">
-import { about, cases, identity, principles, writing } from '~/data/portfolio'
+import { about, cases, identity, principles, siteUrl, writing } from '~/data/portfolio'
 import { vReveal } from '~/directives/reveal'
+
+usePageSeo(() => ({
+  title: 'Hussein Samy — Frontend engineer',
+  description:
+    'I ship production frontends that stay fast, accessible, and easy to change. Frontend engineer in Cairo, UTC+3, open to remote roles.',
+  path: '/',
+  schema: [
+    person,
+    {
+      '@type': 'WebSite',
+      '@id': `${siteUrl}/#website`,
+      url: siteUrl,
+      name: 'Hussein Samy',
+      inLanguage: 'en',
+      publisher: { '@id': `${siteUrl}/#person` },
+    },
+  ],
+}))
 </script>
 
 <template>
-  <main id="top" class="max-w-page px-gutter relative z-1 mx-auto">
+  <div id="top" class="max-w-page px-gutter relative z-1 mx-auto">
     <PageSection first class="pt-4 pb-24">
       <StatusDot label="Open to remote frontend roles" class="mb-8" />
       <h1 class="font-display text-hero m-0 mb-8 max-w-[800px] font-medium text-pretty">
@@ -121,5 +139,5 @@ import { vReveal } from '~/directives/reveal'
         />
       </div>
     </PageSection>
-  </main>
+  </div>
 </template>

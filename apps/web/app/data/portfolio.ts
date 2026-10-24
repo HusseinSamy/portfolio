@@ -9,6 +9,8 @@ import type {
 
 export type { CaseStudy }
 
+export const siteUrl = 'https://www.husseinsamy.site'
+
 export const identity: Identity = {
   brand: 'HUSSEIN SAMY',
   email: 'husseinsamy.dev@gmail.com',

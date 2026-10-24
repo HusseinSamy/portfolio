@@ -12,7 +12,7 @@ const { tags = [], action = 'READ THE CASE' } = defineProps<{
 <template>
   <AppCard :to="to">
     <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
-      <h3 class="font-display text-title m-0 font-medium">{{ title }}</h3>
+      <h2 class="font-display text-title m-0 font-medium">{{ title }}</h2>
       <span class="text-ink font-mono text-label whitespace-nowrap">{{ meta }}</span>
     </div>
     <p class="text-ink text-prose m-0 max-w-[560px] text-pretty">{{ summary }}</p>
@@ -21,7 +21,8 @@ const { tags = [], action = 'READ THE CASE' } = defineProps<{
     </div>
     <span class="text-accent inline-flex items-center gap-1 font-mono text-label tracking-mono">
       {{ action }}
-      <span class="inline-block transition-transform duration-200 ease-[ease] group-hover:translate-x-1"
+      <span
+        class="inline-block transition-transform duration-200 ease-[ease] group-hover:translate-x-1"
         >→</span
       >
     </span>

@@ -12,6 +12,12 @@ export default defineNuxtConfig({
   modules: ['@vercel/analytics'],
 
   css: ['~/assets/style.css'],
+
+  // Nuxt inlines only component styles by default, which leaves the global sheet as a
+  // render-blocking request before first paint. Inline it too: the page is a few KB of CSS.
+  features: {
+    inlineStyles: (id) => !!id && (id.includes('.vue') || id.includes('assets/style.css')),
+  },
   vite: { plugins: [tailwindcss()] },
 
   // Flat names (`AppButton`, not `CoreAppButton`) so the folders stay a filing

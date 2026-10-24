@@ -1,5 +1,21 @@
 <script setup lang="ts">
-import { about, identity } from '~/data/portfolio'
+import { about, identity, siteUrl } from '~/data/portfolio'
+
+usePageSeo(() => ({
+  title: 'About — Hussein Samy',
+  description: about.summary,
+  path: '/about',
+  schema: [
+    person,
+    {
+      '@type': 'ProfilePage',
+      '@id': `${siteUrl}/about#page`,
+      url: `${siteUrl}/about`,
+      name: 'About Hussein Samy',
+      mainEntity: { '@id': `${siteUrl}/#person` },
+    },
+  ],
+}))
 </script>
 
 <template>

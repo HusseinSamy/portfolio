@@ -17,7 +17,8 @@
   --color-grey-300: oklch(0.885 0.005 255);
   --color-grey-600: oklch(0.505 0.011 255);
   --color-grey-900: oklch(0.24 0.012 255);
-  --color-ochre-500: oklch(0.6 0.115 68);
+  /* 4.5:1+ on every light surface, white-on-ochre buttons included */
+  --color-ochre-500: oklch(0.54 0.115 68);
   --color-ochre-300: oklch(0.775 0.115 74);
 
   --font-display: 'Bricolage Grotesque Variable', sans-serif;
