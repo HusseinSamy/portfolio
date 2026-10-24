@@ -25,6 +25,7 @@ usePageSeo(() => {
         description: a.summary,
         url,
         datePublished: a.date,
+        timeRequired: `PT${readingMinutes(a.body)}M`,
         author: { '@id': `${siteUrl}/#person` },
         inLanguage: 'en',
       },
@@ -32,6 +33,9 @@ usePageSeo(() => {
   }
 })
 
+const minutes = computed(() => (article.value ? readingMinutes(article.value.body) : 0))
+// The cover follows the opening paragraph, so the page starts with the argument.
+const coverAfter = computed(() => article.value?.body.findIndex((b) => b.kind === 'paragraph'))
 const headings = computed(() => article.value?.body.filter((b) => b.kind === 'heading') ?? [])
 
 // The ISO day parses as UTC midnight; formatting in UTC keeps server and client on that day.
@@ -71,9 +75,10 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
       >
         {{ article.title }}
       </h1>
-      <time :datetime="article.date" class="text-ink block font-mono text-label uppercase">{{
-        dateFormat.format(new Date(article.date))
-      }}</time>
+      <p class="text-ink m-0 font-mono text-label uppercase">
+        <time :datetime="article.date">{{ dateFormat.format(new Date(article.date)) }}</time>
+        · {{ minutes }} min read
+      </p>
 
       <template v-for="(block, i) in article.body" :key="i">
         <component
@@ -106,6 +111,15 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
           <figcaption class="text-ink mt-3 font-mono text-micro uppercase">
             {{ block.caption }}
           </figcaption>
+        </figure>
+        <figure v-if="article.cover && i === coverAfter" class="my-10">
+          <img
+            :src="article.cover.src"
+            :alt="article.cover.alt"
+            :width="article.cover.width"
+            :height="article.cover.height"
+            class="border-line rounded-card h-auto w-full border"
+          />
         </figure>
       </template>
 

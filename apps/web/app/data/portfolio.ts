@@ -83,6 +83,12 @@ export const writing: Article[] = [
     summary:
       'The 2016 book is a case study of how Micah Godbolt built Red Hat’s design system, not a guide to architecting frontend applications. Its tools are a decade out of date, but its thinking holds up.',
     date: '2026-10-16',
+    cover: {
+      src: '/books/frontend-architecture-for-design-systems.jpg',
+      alt: 'Cover of Frontend Architecture for Design Systems by Micah Godbolt',
+      width: 1044,
+      height: 1500,
+    },
     body: [
       { kind: 'heading', level: 2, id: 'tldr', text: 'TL;DR' },
       {

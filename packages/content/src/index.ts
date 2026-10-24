@@ -34,12 +34,15 @@ export type ArticleBlock =
   | { kind: 'code'; lang: string; code: string }
   | { kind: 'figure'; svg: string; caption: string }
 
+export type ArticleCover = { src: string; alt: string; width: number; height: number }
+
 export type Article = {
   slug: string
   meta: string
   title: string
   summary: string
   date: string // ISO day, as 2026-10-16
+  cover?: ArticleCover // shown beside the title, e.g. the cover of a book under review
   body: ArticleBlock[]
 }
 
